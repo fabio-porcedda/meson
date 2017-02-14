@@ -1276,10 +1276,10 @@ int dummy;
                 if mesonlib.is_windows():
                     command_template = ''' command = {executable} @$out.rsp
  rspfile = $out.rsp
- rspfile_content = $ARGS  {output_args} $in $LINK_ARGS {cross_args} $aliasing
+ rspfile_content = $ARGS  {output_args} -Wl,--start-group $in $LINK_ARGS {cross_args} $aliasing
 '''
                 else:
-                    command_template = ' command = {executable} $ARGS {output_args} $in $LINK_ARGS {cross_args} $aliasing\n'
+                    command_template = ' command = {executable} $ARGS {output_args} -Wl,--start-group $in $LINK_ARGS {cross_args} $aliasing\n'
                 command = command_template.format(
                     executable=' '.join(compiler.get_linker_exelist()),
                     cross_args=' '.join(cross_args),
